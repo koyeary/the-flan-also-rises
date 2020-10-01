@@ -13,7 +13,7 @@ export default {
     return axios.post("/api/books", bookData).then(result => result.data);
   },
   // Get the saved a books from the database
-  savedBooks: function () {
+  allBooks: function () {
     return axios.get("/api/books").then(result => result.data);
   }
 };
