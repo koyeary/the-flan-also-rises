@@ -21,7 +21,8 @@ mongoose.connect(
   process.env.MONGODB_URI || "mongodb+srv://books:@1noORd3en@books.1k2oo.mongodb.net/books?retryWrites=true&w=majority",
   {
     useCreateIndex: true,
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
   }
 );
 
