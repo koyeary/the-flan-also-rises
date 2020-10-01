@@ -1,27 +1,28 @@
 import React from "react";
+import { Form, Button } from 'react-bootstrap';
 
 // This file exports the Input, TextArea, and FormBtn components
 
 export function Input(props) {
   return (
-    <div className="form-group">
-      <input className="form-control" {...props} />
-    </div>
+    <Form.Group>
+      <Form.Control {...props} />
+    </Form.Group>
   );
 }
 
 export function TextArea(props) {
   return (
-    <div className="form-group">
-      <textarea className="form-control" rows="20" {...props} />
-    </div>
+    <Form.Group>
+      <Form.Control as='textarea' rows="20" {...props} />
+    </Form.Group>
   );
 }
 
 export function FormBtn(props) {
   return (
-    <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-success">
+    <Button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-success">
       {props.children}
-    </button>
+    </Button>
   );
 }
