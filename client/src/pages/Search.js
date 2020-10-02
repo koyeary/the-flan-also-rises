@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { Jumbotron, Col, Row } from 'react-bootstrap';
 import API from "../utils/API";
-import Form from '../components/Form';
+import Searchbar from './Searchbar';
+//import Form from '../components/Form';
 
 function Search() {
   // Setting our component's initial state
@@ -9,7 +11,7 @@ function Search() {
 
   // Load all books and store them with setBooks
    useEffect(() => {
-    bookSearch();
+    searchBook();
   });
 
   function bookData () {
@@ -49,18 +51,16 @@ function Search() {
   };
 
     return (
-        <div>
-            <div className='form'>
-              <Form.Input
-              handleInputChange={handleInputChange}
-            />
-              <Form.Button handleFormSubmit={handleFormSubmit}/>
-            </div>
-            <div className="container">
+      <Jumbotron>
+        <Row>
+          <Col md={3}/>
+            <Col md={6}>
                 <h2>Results</h2>
-                <Results books={books} />
-            </div>
-        </div>
+                <Searchbar/>
+            </Col>
+            <Col md={3}/>
+        </Row>
+        </Jumbotron>
     )
 }
 

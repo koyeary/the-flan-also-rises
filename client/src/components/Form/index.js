@@ -26,3 +26,5 @@ export function FormBtn(props) {
     </Button>
   );
 }
+
+export default Form;
