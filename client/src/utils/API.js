@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
   getBook: function (query) {
-    return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
+    return axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=10`);
   },
   // Deletes the book with the given id
   deleteBook: function (id) {
@@ -12,8 +12,8 @@ export default {
   saveBook: function (bookData) {
     return axios.post("/api/books", bookData).then(result => result.data);
   },
-  // Get the saved a books from the database
-  allBooks: function () {
+  // Get the saved books from the database
+  getSaved: function () {
     return axios.get("/api/books").then(result => result.data);
   }
 };
