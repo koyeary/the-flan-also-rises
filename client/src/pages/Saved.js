@@ -9,7 +9,7 @@ import {
 } from "react-bootstrap";
 
 const Saved = () => {
-  const [books, setBooks] = useState([]);
+  const [tiles, setTiles] = useState([]);
 
   useEffect(() => {
     loadBooks();
@@ -19,27 +19,27 @@ const Saved = () => {
   const loadBooks = () => {
     API.getSaved()
       .then(res => {
-        setBooks(books.push(res.data.items));
+        console.log(res);
       })
       .catch(err => {
         console.log(err.response);
       });
   };
 
-  const handleDelete = (id) => {
+/*   const handleDelete = (id) => {
     API.deleteBook(id).then(loadBooks()).catch(err => console.error(err));
-  }
+  } */
 
   //Construct book tiles
   const handleTiles = () => {
-    const items = books.map((item, i) => {
+    const items = tiles.map((item, i) => {
       let thumbnail = '';
       if (item.volumeInfo.imageLinks) {
         thumbnail = item.volumeInfo.imageLinks.thumbnail;
       }
 
       return (
-<Row>
+        <Row>
           <BookTile
             key={item.volumeInfo.id}
             thumbnail={thumbnail}
@@ -57,26 +57,26 @@ const Saved = () => {
     );
   };
 
-    return (
+  return (
+    <div>
+      <Jumbotron>
+        <Row>
+          <Col md={3} />
+          <Col md={6} className='text-center'>
+            <h1>My Library</h1>
+          </Col>
+          <Col md={3} />
+        </Row>
+      </Jumbotron>
       <div>
-        <Jumbotron>
-          <Row>
-            <Col md={3} />
-            <Col md={6} className='text-center'>
-              <h1>My Library</h1>
-            </Col>
-            <Col md={3} />
-          </Row>
-        </Jumbotron>
-        <div>
-          <Container>
-            <Col />
-            <Col md={6}>{handleTiles()}</Col>
-            <Col />
-          </Container>
-        </div>
+        <Container>
+        <Col md={3} />
+        <Col md={6} className='mx-auto'>{handleTiles()}</Col>
+        <Col md={3} />
+        </Container>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
-  export default Saved;
+export default Saved;

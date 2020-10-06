@@ -11,7 +11,7 @@ const BookTile = ({ id, title, thumbnail, authors, description, infoLink }) => {
             'authors': authors,
             'link': infoLink,
             'description': description,
-            'image': infoLink,
+            'image': thumbnail,
             'googleID': id
         })
             .then(alert(`${title} saved!`))
