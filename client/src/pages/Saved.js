@@ -1,38 +1,45 @@
 import React, { useState, useEffect } from "react";
 import API from "../utils/API";
 import BookTile from '../components/BookTile/BookTile.js';
-import { Container,
-  Row, 
-  Col } from "react-bootstrap";
+import {
+  Jumbotron,
+  Container,
+  Row,
+  Col
+} from "react-bootstrap";
 
 const Saved = () => {
-    const [tiles, setTiles] = useState([]);
+  const [books, setBooks] = useState([]);
 
-    useEffect(() => {
-        loadBooks();
-    });
+  useEffect(() => {
+    loadBooks();
+  });
 
-      // Handle Search
+  // Handle Search
   const loadBooks = () => {
     API.getSaved()
       .then(res => {
-        setTiles(res.data.items);
+        setBooks(books.push(res.data.items));
       })
       .catch(err => {
         console.log(err.response);
       });
   };
 
+  const handleDelete = (id) => {
+    API.deleteBook(id).then(loadBooks()).catch(err => console.error(err));
+  }
+
   //Construct book tiles
   const handleTiles = () => {
-    const items = tiles.map((item, i) => {
+    const items = books.map((item, i) => {
       let thumbnail = '';
       if (item.volumeInfo.imageLinks) {
         thumbnail = item.volumeInfo.imageLinks.thumbnail;
       }
 
       return (
-        <Row>
+<Row>
           <BookTile
             key={item.volumeInfo.id}
             thumbnail={thumbnail}
@@ -50,17 +57,26 @@ const Saved = () => {
     );
   };
 
+    return (
+      <div>
+        <Jumbotron>
+          <Row>
+            <Col md={3} />
+            <Col md={6} className='text-center'>
+              <h1>My Library</h1>
+            </Col>
+            <Col md={3} />
+          </Row>
+        </Jumbotron>
+        <div>
+          <Container>
+            <Col />
+            <Col md={6}>{handleTiles()}</Col>
+            <Col />
+          </Container>
+        </div>
+      </div>
+    );
+  }
 
-
-  return (
-    <div>
-      <Container>
-        <Col />
-        <Col md={6}>{handleTiles()}</Col>
-        <Col />
-      </Container>
-    </div>
-  );
-}
-
-export default Saved;
+  export default Saved;

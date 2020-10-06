@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+/* const mongoose = require("mongoose");
 const db = require("../models");
 
 // This file empties the Books collection and inserts the books below
@@ -32,4 +32,4 @@ db.Book
     .catch(err => {
         console.error(err);
         process.exit(1);
-    });
+    }); */

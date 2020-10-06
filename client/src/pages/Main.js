@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import API from '../utils/API';
 import { Link } from 'react-router-dom';
 import BookTile from '../components/BookTile/BookTile.js';
-import { Container, 
-  Jumbotron, 
-  Form, 
-  Button, 
-  Row, 
-  Col } from 'react-bootstrap';
+import {
+  Container,
+  Jumbotron,
+  Form,
+  Button,
+  Row,
+  Col
+} from 'react-bootstrap';
 
 const Main = () => {
 
@@ -20,14 +22,12 @@ const Main = () => {
   const handleSubmit = () => {
     API.getBook(query)
       .then(res => {
-
         setTiles(res.data.items);
       })
       .catch(err => {
         console.log(err.response);
       });
   };
-
 
   // Searchbar
   const searchBar = () => {
@@ -37,8 +37,8 @@ const Main = () => {
           <Col md={3} />
           <Col md={6}>
             <div>
-            <h1>(React) Google Book Search</h1>
-            <h4>Search and save books to your personal library.</h4>
+              <h1>(React) Google Book Search</h1>
+              <h4>Search and save books to your personal library.</h4>
             </div>
             <Form className='mt-5'>
               <Form.Group size='lg' className='mb-3'>
@@ -47,12 +47,12 @@ const Main = () => {
                   value={query}
                   onChange={e => setQuery(e.target.value)}
                 />
-                <Button className='mt-3' color='secondary' onClick={handleSubmit}>
-                  Search
+                  <Button className='mt-3' color='secondary' onClick={handleSubmit}>
+                    Search
                 </Button>
                 <div className='mt-3'>
-                <Link to='/saved'><h5>Go to my library.</h5></Link>
-                </div> 
+                  <Link to='/saved'><h5>Go to my library.</h5></Link>
+                </div>
               </Form.Group>
             </Form>
           </Col>
@@ -95,9 +95,9 @@ const Main = () => {
     <div>
       {searchBar()}
       <Container>
-        <Col />
-        <Col md={6}>{handleTiles()}</Col>
-        <Col />
+        <Col md={3} />
+        <Col md={6} className='mx-auto'>{handleTiles()}</Col>
+        <Col md={3} />
       </Container>
     </div>
   );

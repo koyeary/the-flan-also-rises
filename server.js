@@ -1,6 +1,6 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const routes = require("./routes");
+const express = require('express');
+const mongoose = require('mongoose');
+const routes = require('./routes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -9,22 +9,25 @@ const PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Serve up static assets
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
 }
 
 // Add routes
 app.use(routes);
 
 // Connect to the Mongo DB
+mongoose.Promise= global.Promise;
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb+srv://books:@1noORd3en@books.1k2oo.mongodb.net/books?retryWrites=true&w=majority",
+  process.env.MONGODB_URI || `mongodb://localhost/googlebooksearch`,
   {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
   }
-);
+)
+.then(console.log('Mongoose connected'))
+.catch(err => console.error(err));
 
 // Start the API server
 app.listen(PORT, () =>
