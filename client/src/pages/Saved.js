@@ -19,7 +19,7 @@ const Saved = () => {
   const loadBooks = () => {
     API.getSaved()
       .then(res => {
-        console.log(res);
+        setTiles(res);
       })
       .catch(err => {
         console.log(err.response);
@@ -34,20 +34,20 @@ const Saved = () => {
   const handleTiles = () => {
     const items = tiles.map((item, i) => {
       let thumbnail = '';
-      if (item.volumeInfo.imageLinks) {
-        thumbnail = item.volumeInfo.imageLinks.thumbnail;
+      if (item.image) {
+        thumbnail = item.image;
       }
 
       return (
         <Row>
           <BookTile
-            key={item.volumeInfo.id}
+            key={item.id}
             thumbnail={thumbnail}
-            title={item.volumeInfo.title}
-            language={item.volumeInfo.language}
-            authors={item.volumeInfo.authors}
-            description={item.volumeInfo.description}
-            infoLink={item.volumeInfo.infoLink}
+            title={item.title}
+            language={item.language}
+            authors={item.authors}
+            description={item.description}
+            infoLink={item.infoLink}
           />
         </Row>
       );

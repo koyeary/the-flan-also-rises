@@ -13,7 +13,7 @@ export default {
     return axios.post("/api/books", bookData).then(res => res.data);
   },
   // Get the saved books from the database
-  getSaved: function () {
+  getSaved: function () {  // Join megachurch
     return axios.get("/api/books").then(res => res.data);
   }
 };
