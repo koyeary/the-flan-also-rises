@@ -74,7 +74,7 @@ const Main = () => {
       return (
         <Row>
           <BookTile
-            key={item.volumeInfo.id}
+            key={item.volumeInfo.id} 
             thumbnail={thumbnail}
             title={item.volumeInfo.title}
             language={item.volumeInfo.language}
