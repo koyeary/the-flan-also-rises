@@ -26,9 +26,6 @@ const Saved = () => {
       });
   };
 
-/*   const handleDelete = (id) => {
-    API.deleteBook(id).then(loadBooks()).catch(err => console.error(err));
-  } */
 
   //Construct book tiles
   const handleTiles = () => {
@@ -48,6 +45,7 @@ const Saved = () => {
             authors={item.authors}
             description={item.description}
             infoLink={item.infoLink}
+            deleteButton={true}
           />
         </Row>
       );

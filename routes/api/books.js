@@ -12,11 +12,7 @@ router
   .route("/:id")
   .get(booksController.findById)
   .put(booksController.update)
-  .delete(booksController.remove);
-
-/*  router  
-  .route("/saved")
-  .get(booksController.findAll);  */
+  .delete(booksController.delete);
 
 
 module.exports = router;

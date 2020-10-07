@@ -3,7 +3,7 @@ import { Card, Row, Col, Button, Container } from 'react-bootstrap';
 import API from '../../utils/API';
 import './BookTile.css';
 
-const BookTile = ({ id, title, thumbnail, authors, description, infoLink }) => {
+const BookTile = ({ id, title, thumbnail, authors, description, infoLink, deleteButton }) => {
 
     const handleSave = () => {
         API.saveBook({
@@ -18,6 +18,9 @@ const BookTile = ({ id, title, thumbnail, authors, description, infoLink }) => {
             .catch(err => console.error(err));
     }
 
+      const handleDelete = (id) => {
+        API.deleteBook(id).then(console.log('deleted')).catch(err => console.error(err));
+      }
 
     return (
         <div>
@@ -34,7 +37,10 @@ const BookTile = ({ id, title, thumbnail, authors, description, infoLink }) => {
                                 <h3>{title}</h3>
                                 <h5> by {authors}</h5>
                                 <p className='mt-3'>{description}</p>
-                                <Button onClick={handleSave}>Save</Button>
+                                {deleteButton
+                                ? <Button onClick={handleDelete}>Delete</Button>
+                                : <Button onClick={handleSave}>Save</Button>
+                            }
                             </Card.Body>
                         </Col>
                     </Row>

@@ -81,6 +81,7 @@ const Main = () => {
             authors={item.volumeInfo.authors}
             description={item.volumeInfo.description}
             infoLink={item.volumeInfo.infoLink}
+            deleteButton={false}
           />
         </Row>
       );
