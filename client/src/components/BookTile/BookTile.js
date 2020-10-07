@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Row, Col, Button, Container } from 'react-bootstrap';
 import API from '../../utils/API';
 import './BookTile.css';
 
 const BookTile = ({ id, title, thumbnail, authors, description, infoLink, deleteButton }) => {
+
 
     const handleSave = () => {
         API.saveBook({
@@ -11,16 +12,17 @@ const BookTile = ({ id, title, thumbnail, authors, description, infoLink, delete
             'authors': authors,
             'link': infoLink,
             'description': description,
-            'image': thumbnail,
-            'googleID': id
+            'image': thumbnail
         })
             .then(alert(`${title} saved!`))
             .catch(err => console.error(err));
     }
 
-      const handleDelete = (id) => {
-        API.deleteBook(id).then(console.log('deleted')).catch(err => console.error(err));
-      }
+    const handleDelete = () => {
+        API.deleteBook(id)
+            .then(alert(`${title} has been removed`))
+            .catch(err => console.error(err));
+    }
 
     return (
         <div>

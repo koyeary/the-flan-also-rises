@@ -26,7 +26,6 @@ const Saved = () => {
       });
   };
 
-
   //Construct book tiles
   const handleTiles = () => {
     const items = tiles.map((item, i) => {
@@ -38,7 +37,6 @@ const Saved = () => {
       return (
         <Row>
           <BookTile
-            key={item.id}
             thumbnail={thumbnail}
             title={item.title}
             language={item.language}
@@ -46,6 +44,7 @@ const Saved = () => {
             description={item.description}
             infoLink={item.infoLink}
             deleteButton={true}
+            id={item._id}
           />
         </Row>
       );
