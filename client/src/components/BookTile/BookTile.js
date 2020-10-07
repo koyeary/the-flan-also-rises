@@ -10,8 +10,8 @@ const BookTile = ({ id, title, thumbnail, authors, description, infoLink, delete
         API.saveBook({
             'title': title,
             'authors': authors,
-            'link': infoLink,
             'description': description,
+            'link': infoLink,
             'image': thumbnail
         })
             .then(alert(`${title} saved!`))

@@ -63,6 +63,7 @@ const Main = () => {
     );
   };
 
+
   //Construct book tiles
   const handleTiles = () => {
     const items = tiles.map((item, i) => {
@@ -95,6 +96,7 @@ const Main = () => {
   return (
     <div>
       {searchBar()}
+      {console.log(tiles)}
       <Container>
         <Col md={3} />
         <Col md={6} className='mx-auto'>{handleTiles()}</Col>
